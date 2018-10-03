@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources"
+		value="ApplicationResources" />
+
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="ProcessRegister"
+			class="com.fa.linhnt49.struts2.action.RegisterAction">
+			<result name="success" type="redirect">/Login</result>
+			<result name="error">/views/register.jsp</result>
+		</action>
+		
+		<action name="ProcessLogin"
+			class="com.fa.linhnt49.struts2.action.LoginAction">
+			<result name="success">/views/index.jsp</result>
+			<result name="error">/views/login.jsp</result>
+		</action>
+
+		<action name="Login"
+			class="com.fa.linhnt49.struts2.action.RegisterAction" method="redirectLogin">
+			<result name="success">/views/login.jsp</result>
+		</action>
+		
+		<action name="Register"
+			class="com.fa.linhnt49.struts2.action.LoginAction" method="redirectRegister">
+			<result name="success">/views/register.jsp</result>
+		</action>
+		
+		<action name="ViewContents"
+			class="com.fa.linhnt49.struts2.action.ViewContentsAction" method="showViewContentsPage">
+			<result name="success">/views/view-contents.jsp</result>
+		</action>
+
+	</package>
+	
+	<package name="json" extends="json-default">
+	
+		<action name="json" class="com.fa.linhnt49.struts2.action.RegisterJsonAction">
+			<result name="REGISTER" type="json"></result>
+		</action>
+		
+		<action name="contentJson" class="com.fa.linhnt49.struts2.action.ViewContentsAction" method="showViewContentsPage">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="getContentJson" class="com.fa.linhnt49.struts2.action.GetContentJsonAction" method="getContentById">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="updateContentJson" class="com.fa.linhnt49.struts2.action.UpdateContentAction" method="updateContent">
+			<result name="success" type="json"></result>
+		</action>
+	</package>
+	
+</struts>
